@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -6,17 +7,13 @@ export class AuthService {
   // It can include methods for user registration, login, and token management.
   // Each method in this service corresponds to a specific authentication task.
 
-  signin(username: string, password: string): string {
-    // This method handles user login.
-    // It takes a username and password as input and returns a token or user information.
+  constructor(private prisma: PrismaService) {}
 
-    return `User ${username} logged in successfully!`;
+  signin(body: { email: string; password: string }): string {
+    return `User logged in successfully!`;
   }
 
-  signup(username: string, password: string): string {
-    // This method handles user registration.
-    // It takes a username and password as input and returns a success message or user information.
-
-    return `User ${username} registered successfully!`;
+  signup(body: { name: string; email: string; password: string }): string {
+    return `User registered successfully!`;
   }
 }

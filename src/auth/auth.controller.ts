@@ -1,5 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { SignInDto, SignUpDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
@@ -12,16 +13,12 @@ export class AuthController {
   }
 
   @Post('login')
-  signin() {
-    return this.authService.signin('username', 'password');
-    // This method handles user login.
-    // It takes a username and password as input and returns success or unsuccess based on credentials.
+  signin(@Body() dto: SignInDto) {
+    return this.authService.signin(dto);
   }
 
   @Post('register')
-  singup() {
-    return this.authService.signup('username', 'password');
-    // This method handles user registration.
-    // It takes a username and password as input and returns a success message or user information.
+  singup(@Body() dto: SignUpDto) {
+    return this.authService.signup(dto);
   }
 }
