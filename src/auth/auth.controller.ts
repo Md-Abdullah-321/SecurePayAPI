@@ -12,7 +12,7 @@ import {
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { SignInDto, SignUpDto } from './dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard'; // Import the guard
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -58,7 +58,7 @@ export class AuthController {
     };
   }
 
-  @UseGuards(JwtAuthGuard) // Protecting the route
+  @UseGuards(JwtAuthGuard)
   @Get('me')
   async me(@Request() req: Request) {
     const users = await this.authService.getAllUsers();

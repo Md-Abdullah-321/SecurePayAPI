@@ -15,13 +15,13 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
+  id        String        @id @default(cuid())
   name      String
-  email     String    @unique
+  email     String        @unique
   password  String
-  role      Role      @default(USER)
-  createdAt DateTime  @default(now())
-  payments  Payment[]
+  role      Role          @default(USER)
+  createdAt DateTime      @default(now())
+  payments  Transaction[]
 }
 
 enum Role {
@@ -29,10 +29,14 @@ enum Role {
   ADMIN
 }
 
-model Payment {
-  id        String   @id @default(cuid())
+model Transaction {
+  id        String   @id @default(uuid())
   userId    String
   amount    Float
+  currency  String
+  paymentId String   @unique
+  status    String
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 }

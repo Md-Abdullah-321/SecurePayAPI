@@ -126,10 +126,13 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.PaymentScalarFieldEnum = {
+exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   amount: 'amount',
+  currency: 'currency',
+  paymentId: 'paymentId',
+  status: 'status',
   createdAt: 'createdAt'
 };
 
@@ -149,7 +152,7 @@ exports.Role = exports.$Enums.Role = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Payment: 'Payment'
+  Transaction: 'Transaction'
 };
 
 /**
